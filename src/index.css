@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .hero-scene {
+    animation: sceneBreath 7s ease-in-out infinite;
+  }
+}
+
+@keyframes sceneBreath {
+  0%, 100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.018);
+  }
+}
+
+.light-ribbon {
+  position: absolute;
+  z-index: 12;
+  height: 2px;
+  width: 42vw;
+  border-radius: 999px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 117, 38, .15),
+    rgba(255, 240, 210, .75),
+    rgba(255, 73, 29, .35),
+    transparent
+  );
+  filter: blur(.5px);
+  mix-blend-mode: screen;
+  opacity: .75;
+  transform: skewX(-14deg);
+  animation: ribbonFloat 3.8s ease-in-out infinite;
+}
+
+.ribbon-1 {
+  top: 36%;
+  right: -18%;
+  animation-delay: 0s;
+}
+
+.ribbon-2 {
+  top: 47%;
+  right: -24%;
+  animation-delay: .7s;
+  opacity: .55;
+}
+
+.ribbon-3 {
+  top: 61%;
+  right: -20%;
+  animation-delay: 1.4s;
+  opacity: .38;
+}
+
+@keyframes ribbonFloat {
+  0% {
+    transform: translateX(12vw) skewX(-14deg);
+    opacity: 0;
+  }
+
+  18% {
+    opacity: .8;
+  }
+
+  55% {
+    opacity: .55;
+  }
+
+  100% {
+    transform: translateX(-115vw) skewX(-14deg);
+    opacity: 0;
+  }
+}
+
+.wheel-spin {
+  position: absolute;
+  z-index: 13;
+  border-radius: 999px;
+  pointer-events: none;
+  background:
+    conic-gradient(
+      from 0deg,
+      rgba(0,0,0,0.6),
+      rgba(255,255,255,.05),
+      rgba(0,0,0,0.4),
+      rgba(255,100,50,.15),
+      rgba(0,0,0,0.6)
+    );
+  mix-blend-mode: overlay;
+  filter: blur(1px);
+  opacity: .85;
+  animation: wheelRotate .25s linear infinite;
+}
+
+.front-wheel-fake {
+  width: 14vw;
+  height: 14vw;
+  left: 55.4%;
+  top: 59%;
+}
+
+.rear-wheel-fake {
+  width: 12.5vw;
+  height: 12.5vw;
+  left: 88.5%;
+  top: 52%;
+}
+
+@keyframes wheelRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.rear-speed-glow {
+  position: absolute;
+  z-index: 11;
+  right: 5%;
+  bottom: 25%;
+  width: 44vw;
+  height: 28vh;
+  background:
+    radial-gradient(circle at 20% 50%, rgba(255, 111, 43, .1), transparent 50%),
+    radial-gradient(circle at 60% 45%, rgba(255, 255, 255, .05), transparent 60%);
+  filter: blur(24px);
+  mix-blend-mode: screen;
+  opacity: .6;
+  animation: smokePulse 2.8s ease-in-out infinite;
+}
+
+@keyframes smokePulse {
+  0%, 100% {
+    transform: translateX(0) scale(1);
+    opacity: .45;
+  }
+
+  50% {
+    transform: translateX(-2vw) scale(1.08);
+    opacity: .82;
+  }
+}
+
+@media (max-width: 768px) {
+  .front-wheel-fake {
+    width: 20vw;
+    height: 20vw;
+  }
+
+  .rear-wheel-fake {
+    width: 18vw;
+    height: 18vw;
+  }
+
+  .light-ribbon {
+    width: 70vw;
+  }
+}

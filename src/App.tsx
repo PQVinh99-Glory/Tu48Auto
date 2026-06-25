@@ -1,18 +1,15 @@
-import { Header } from "./components/Header";
-import { HeroIntro } from "./components/HeroIntro";
-import { Menu2 } from "./components/Menu2";
-import { Footer } from "./components/Footer";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
+import { HomePage } from "./pages/HomePage";
+import { AdminPage } from "./pages/AdminPage";
 
 function App() {
   return (
-    <>
-      <Header />
-      <main className="relative bg-[#050505]">
-        <HeroIntro />
-        <Menu2 />
-      </main>
-      <Footer />
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/quan-ly-xe" element={<AdminPage />} />
+      </Routes>
+    </Router>
   );
 }
 

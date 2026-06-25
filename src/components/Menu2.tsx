@@ -1,4 +1,24 @@
+import { useState, useEffect } from "react";
+
+interface Car {
+  id: string;
+  image: string;
+  type: string;
+}
+
 export function Menu2() {
+  const [cars, setCars] = useState<Car[]>([]);
+
+  useEffect(() => {
+    fetch("./data/cars.json")
+      .then((res) => res.json())
+      .then((data) => setCars(data))
+      .catch((err) => console.error("Error loading cars:", err));
+  }, []);
+
+  const mainCar = cars.find((c) => c.type === "main");
+  const subCars = cars.filter((c) => c.type !== "main");
+
   return (
     <section className="relative z-10 w-full bg-[#050505] py-24 text-white">
       <div className="mx-auto max-w-7xl px-5">
@@ -15,24 +35,26 @@ export function Menu2() {
         {/* Gallery Grid */}
         <div className="grid grid-cols-1 gap-4 md:grid-cols-4 md:grid-rows-2">
           {/* Ảnh Center (to nhất) */}
-          <div className="group relative overflow-hidden rounded-xl md:col-span-2 md:row-span-2">
-            <img
-              src="/center.jpg"
-              alt="Center Car"
-              className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100"></div>
-          </div>
+          {mainCar && (
+            <div className="group relative overflow-hidden rounded-xl md:col-span-2 md:row-span-2">
+              <img
+                src={`/${mainCar.image}`}
+                alt="Center Car"
+                className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100"></div>
+            </div>
+          )}
 
           {/* Các ảnh nhỏ */}
-          {[1, 2, 3, 4].map((num) => (
+          {subCars.map((car) => (
             <div
-              key={num}
+              key={car.id}
               className="group relative h-64 overflow-hidden rounded-xl md:h-auto"
             >
               <img
-                src={`/${num}.jpg`}
-                alt={`Car ${num}`}
+                src={`/${car.image}`}
+                alt={`Car ${car.id}`}
                 className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 transition duration-500 group-hover:opacity-100"></div>

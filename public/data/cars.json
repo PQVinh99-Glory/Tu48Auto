@@ -1,0 +1,27 @@
+[
+  {
+    "id": "1",
+    "image": "1.jpg",
+    "type": "sub"
+  },
+  {
+    "id": "2",
+    "image": "2.jpg",
+    "type": "sub"
+  },
+  {
+    "id": "center",
+    "image": "center.jpg",
+    "type": "main"
+  },
+  {
+    "id": "3",
+    "image": "3.jpg",
+    "type": "sub"
+  },
+  {
+    "id": "4",
+    "image": "4.jpg",
+    "type": "sub"
+  }
+]

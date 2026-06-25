@@ -10,7 +10,7 @@ export function AdminPage() {
   });
 
   const repoOwner = "PQVinh99-Glory";
-  const repoName = "Tu48AutoCarDealer";
+  const repoName = "Tu48Auto";
 
   const handleSaveToken = () => {
     localStorage.setItem("github_token", token);
